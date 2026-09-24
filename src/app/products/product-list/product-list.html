@@ -1,0 +1,17 @@
+<h2>
+    {{ title() }}
+</h2>
+
+<ul class="products">
+    @for (product of products(); track product.id) {
+        <li (click)="select(product)"
+            [class.selected]="product === selectedProduct()"
+            [class.discontinued]="product.discontinued">
+            <span class="name">{{ product.name | uppercase }}</span>
+            <span class="description">{{ product.description }}</span>
+            <span class="price">{{ product.price | currency }}</span>
+        </li>
+    }
+</ul>
+
+<app-product-details [product]="selectedProduct()"></app-product-details>
